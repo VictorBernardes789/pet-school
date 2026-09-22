@@ -1,0 +1,16 @@
+{
+    "tutores": [
+        {"id": "1", "nome": "Safira", "telefone": "479999100100"},
+        {"id": "2", "nome": "Lucas", "telefone": "479999100200"},
+        {"id": "3", "nome": "Marcos", "telefone": "479999100300"},
+        {"id": "4", "nome": "Ana", "telefone": "479999100400"},
+        {"id": "5", "nome": "João", "telefone": "479999100500"}
+    ],
+    "pets": [
+        {"id": "1", "nome": "Melado", "especie": "Cachorro", "tutorId": "1"},
+        {"id": "2", "nome": "Mingau", "especie": "Gato", "tutorId": "2"},
+        {"id": "3", "nome": "Pipoca", "especie": "Cachorro", "tutorId": "3"},
+        {"id": "4", "nome": "Frajola", "especie": "Gato", "tutorId": "4"},
+        {"id": "5", "nome": "Bolinha", "especie": "Cachorro", "tutorId": "5"}
+    ]
+}
