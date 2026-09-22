@@ -10,8 +10,8 @@
     "lint": "run-s \"lint:*\"",
     "lint:oxlint": "oxlint . --fix",
     "lint:eslint": "eslint . --fix --cache",
-    "format": "prettier --write src/"
-    "api": "npx json-server"
+    "format": "prettier --write src/",
+    "api": "npx json-server db.json"
   },
   "dependencies": {
     "axios": "^1.20.0",
