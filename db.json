@@ -1,10 +1,43 @@
 {
   "tutores": [
-    { "id": "1", "nome": "Ana", "telefone": "47999990000" },
-    { "id": "2", "nome": "Carlos", "telefone": "47988880000" }
+    {
+      "id": "1",
+      "nome": "Ana",
+      "telefone": "47999990000"
+    },
+    {
+      "id": "2",
+      "nome": "Carlos",
+      "telefone": "47988880000"
+    },
+    {
+      "nome": "Camila Machado Mengarda",
+      "telefone": "47997321734",
+      "cpfCnpj": "143.712.689-86",
+      "email": "milamachado2446@gmail.com",
+      "dataNascimento": "2010-05-20",
+      "rua": "Avenida Kurt Meinert",
+      "numero": "2511",
+      "bairro": "Paranaguamirim",
+      "cidade": "Joinville",
+      "estado": "SC",
+      "cep": "89234-223",
+      "id": "SmhP_kmsg1w"
+    }
   ],
   "pets": [
-    { "id": "1", "nome": "Safira", "especie": "Cachorro", "tutorId": "1" },
-    { "id": "2", "nome": "Nino", "especie": "Gato", "tutorId": "1" }
-  ]
+    {
+      "id": "1",
+      "nome": "Safira",
+      "especie": "Cachorro",
+      "tutorId": "1"
+    },
+    {
+      "id": "2",
+      "nome": "Nino",
+      "especie": "Gato",
+      "tutorId": "1"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
