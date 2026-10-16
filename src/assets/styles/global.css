@@ -1,0 +1,60 @@
+body {
+  color: #162033;
+  background-color: #fff;
+}
+
+.bg-success {
+  background: linear-gradient(90deg, #16875a, #09996b) !important;
+}
+
+.sidebar .nav-link {
+  color: #46516a;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #edf4ff;
+}
+
+.sidebar .nav-link.active {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.page-title {
+  font-size: clamp(1.8rem, 3vw, 2.25rem);
+  font-weight: 700;
+}
+
+.section-card {
+  border: 1px solid #dce2e9;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.section-card-title {
+  background-color: #f5f6f8;
+  border-bottom: 1px solid #dce2e9;
+  font-weight: 600;
+  padding: 0.65rem 0.85rem;
+  margin: 0;
+}
+
+.section-card-body {
+  padding: 0.9rem;
+}
+
+.info-label {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.15rem;
+}
+
+.table th {
+  background-color: #f5f6f8;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}

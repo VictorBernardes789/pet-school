@@ -1,78 +1,83 @@
 <script setup>
-
-
-import {onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
 const API_URL = 'http://localhost:3000';
-
 const pets = ref([]);
 const tutores = ref([]);
-const loading = ref(true);
+const carregando = ref(true);
+const erro = ref('');
 
 async function carregarDados() {
-  const respostaPets = await fetch(`${API_URL}/pets`);
-  pets.value = await respostaPets.json();
-console.log('Pets:', pets.value);
-  const respostaTutores = await fetch(`${API_URL}/tutores`);
-  tutores.value = await respostaTutores.json();
+  try {
+    const respostaPets = await fetch(`${API_URL}/pets`);
+    const respostaTutores = await fetch(`${API_URL}/tutores`);
 
-  console.log('Tutores:', tutores.value);
+    if (!respostaPets.ok || !respostaTutores.ok) {
+      throw new Error('Não foi possível buscar os dados.');
+    }
 
-  loading.value = false;
+    pets.value = await respostaPets.json();
+    tutores.value = await respostaTutores.json();
+  } catch {
+    erro.value = 'Não foi possível carregar os pets. Verifique se a API está ligada.';
+  } finally {
+    carregando.value = false;
+  }
 }
 
 function nomeDoTutor(tutorId) {
-  for (const tutor of tutores.value) {
-    if (tutor.id == tutorId) {
-      return tutor.nome;
-    }
-  }
-  return 'Tutor não encontrado';
+  const tutor = tutores.value.find((item) => String(item.id) === String(tutorId));
+  return tutor ? tutor.nome : 'Tutor não encontrado';
 }
 
 onMounted(carregarDados);
-
 </script>
-
 
 <template>
   <div>
-    <header class="mb-4">
-      <h1 class="text-2xl font-bold">Listagem de Pets</h1>
-      <p class="text-body-secondary mb-0">
-        Listagem dos Pets cadastrados no sistema.
-      </p>
+    <header class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+      <div>
+        <h1 class="page-title mb-1">Listagem de Pets</h1>
+        <p class="text-body-secondary mb-0">Confira os pets cadastrados no sistema.</p>
+      </div>
+      <RouterLink class="btn btn-primary" to="/pets/novo">
+        <i class="bi bi-plus-lg me-1"></i> Adicionar pet
+      </RouterLink>
     </header>
 
-    <RouterLink
-      class="btn btn-primary"
-      :to="{ name: 'addPet' }"
-    >
-      Adicionar Pet
-    </RouterLink>
-
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Idade</th>
-          <th>Raça</th>
-          <th>Tutor</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr v-for="pet in pets" :key="pet.id">
-          <td>{{ pet.id }}</td>
-          <td>{{ pet.nome }}</td>
-          <td>{{ pet.idade }}</td>
-          <td>{{ pet.raca }}</td>
-          <td> {{ nomeDoTutor(pet.tutorId) }}</td>
-        </tr>
-      </tbody>
-    </table>
-
+    <p v-if="carregando">Carregando pets...</p>
+    <div v-else-if="erro" class="alert alert-danger">{{ erro }}</div>
+    <div v-else class="table-responsive">
+      <table class="table table-bordered table-striped table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Espécie</th>
+            <th>Tutor</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="pet in pets" :key="pet.id">
+            <td>{{ pet.id }}</td>
+            <td>{{ pet.nome }}</td>
+            <td>{{ pet.especie }}</td>
+            <td>{{ nomeDoTutor(pet.tutorId) }}</td>
+            <td>
+              <RouterLink class="btn btn-outline-primary btn-sm" :to="`/pets/${pet.id}`">
+                Visualizar
+              </RouterLink>
+            </td>
+          </tr>
+          <tr v-if="pets.length === 0">
+            <td colspan="5" class="text-center text-body-secondary py-4">
+              Nenhum pet cadastrado.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>

@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "resenha": "vite",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "run-s \"lint:*\"",
